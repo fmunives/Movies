@@ -1,0 +1,66 @@
+<button
+  class="uk-button uk-button-default uk-margin-small-right"
+  type="button"
+  uk-toggle="target: #modal-close-default"
+>
+  Nueva película
+</button>
+<div id="modal-close-default" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <h2 class="uk-modal-title uk-text-center">Nueva película</h2>
+    <form
+      class="uk-form-horizontal"
+      #form="ngForm"
+      (ngSubmit)="updateForm(form)"
+    >
+      <div class="uk-margin">
+        <label class="uk-form-label" for="">Nombre de la película</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input"
+            type="text"
+            name="name"
+            required
+            [(ngModel)]="movie.name"
+          />
+        </div>
+      </div>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="">Fecha de publicación</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input"
+            type="date"
+            name="date"
+            required
+            [(ngModel)]="movie.publishedDate"
+          />
+        </div>
+      </div>
+      <div class="uk-margin">
+        <label class="uk-form-label" for="">Estado</label>
+        <div class="uk-form-controls">
+          <select
+            name="active"
+            id=""
+            class="uk-select"
+            [(ngModel)]="movie.active"
+            required
+          >
+            <option disabled selected>Seleccione el estado</option>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+        </div>
+      </div>
+      <div class="uk-margin uk-text-center">
+        <input
+          type="submit"
+          value="Guardar"
+          class="uk-button-primary uk-button"
+        />
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<table class="uk-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>F. publicación</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of movies; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ movie.name }}</td>
+      <td>{{ movie.publishedDate }}</td>
+      <td>
+        <span *ngIf="movie.active == 'true'" class="uk-badge">Activo</span>
+        <span
+          *ngIf="movie.active == 'false'"
+          class="uk-badge uk-background-secondary"
+          >Inactivo</span
+        >
+      </td>
+      <td>
+        <a href="" uk-icon="icon: pencil" class="uk-margin-small-right"></a>
+        <button uk-icon="icon: trash" (click)="deleteMovie(movie, i)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
