@@ -46,79 +46,10 @@
         >
       </td>
       <td class="uk-text-center">
-        <button
-          uk-icon="icon: pencil"
-          style="color: #1f87f0;"
-          class="uk-margin-medium-right edit"
-          uk-toggle="target: #modal-edit"
+        <app-edit-product
+          [movie]="movieSelected"
           (click)="getMovie(movie)"
-        ></button>
-        <div id="modal-edit" uk-modal>
-          <div class="uk-modal-dialog uk-modal-body">
-            <button
-              class="uk-modal-close-default"
-              type="button"
-              uk-close
-            ></button>
-            <h2 class="uk-modal-title uk-text-center">Editar película</h2>
-            <form
-              class="uk-form-horizontal"
-              #form="ngForm"
-              (ngSubmit)="updateForm(form)"
-              *ngIf="movieSelected"
-            >
-              <div class="uk-margin">
-                <label class="uk-form-label" for=""
-                  >Nombre de la película</label
-                >
-                <div class="uk-form-controls">
-                  <input
-                    class="uk-input"
-                    type="text"
-                    name="name"
-                    required
-                    [(ngModel)]="movieSelected.name"
-                  />
-                </div>
-              </div>
-              <div class="uk-margin">
-                <label class="uk-form-label" for="">Fecha de publicación</label>
-                <div class="uk-form-controls">
-                  <input
-                    class="uk-input"
-                    type="date"
-                    name="date"
-                    required
-                    [(ngModel)]="movieSelected.publishedDate"
-                  />
-                </div>
-              </div>
-              <div class="uk-margin">
-                <label class="uk-form-label" for="">Estado</label>
-                <div class="uk-form-controls">
-                  <select
-                    name="active"
-                    id=""
-                    class="uk-select"
-                    [(ngModel)]="movieSelected.active"
-                    required
-                  >
-                    <option disabled selected>Seleccione el estado</option>
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                  </select>
-                </div>
-              </div>
-              <div class="uk-margin uk-text-center">
-                <input
-                  type="submit"
-                  value="Actualizar"
-                  class="uk-button-primary uk-button"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
+        ></app-edit-product>
         <button
           uk-icon="icon: trash"
           style="color: #e74c3c;"

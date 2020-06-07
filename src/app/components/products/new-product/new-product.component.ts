@@ -19,16 +19,21 @@ export class NewProductComponent implements OnInit {
 
   updateForm(form: NgForm) {
     if (form.invalid) {
+      Object.values(form.controls).forEach((control) =>
+        control.markAsTouched()
+      );
       return;
     }
+
+    console.log(form);
     // document.getElementById('auto-click').click();
     this._movies.createMovie(this.movie).subscribe((resp: MovieModel) => {
       this.newMovie = false;
       Swal.fire({
-        title: `Película ${resp.name} creada`,
-        text: 'Refresce la página para ver los cambios.',
+        title: 'guardado',
+        text: `Película ${resp.name} ha sido creado`,
         icon: 'success',
-      });
+      }).then((clicked) => location.reload());
     });
   }
 }

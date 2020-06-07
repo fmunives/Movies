@@ -1,17 +1,18 @@
 <button
-  class="uk-margin-small-right"
-  type="button"
-  uk-toggle="target: #modal-close-default"
   uk-icon="icon: pencil"
+  style="color: #1f87f0;"
+  class="uk-margin-medium-right edit"
+  uk-toggle="target: #modal-edit"
 ></button>
-<div id="modal-close-default" uk-modal>
+<div id="modal-edit" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
     <button class="uk-modal-close-default" type="button" uk-close></button>
-    <h2 class="uk-modal-title uk-text-center">Nueva película</h2>
+    <h2 class="uk-modal-title uk-text-center">Editar película</h2>
     <form
       class="uk-form-horizontal"
       #form="ngForm"
-      (ngSubmit)="updateForm(form)"
+      (ngSubmit)="saveInformation(form)"
+      *ngIf="movie"
     >
       <div class="uk-margin">
         <label class="uk-form-label" for="">Nombre de la película</label>
@@ -21,8 +22,13 @@
             type="text"
             name="name"
             required
+            [class.is-invalid]="name.invalid && name.touched"
+            #name="ngModel"
             [(ngModel)]="movie.name"
           />
+          <small class="uk-alert-warning" *ngIf="name.invalid && name.touched"
+            >Nombre obligatorio</small
+          >
         </div>
       </div>
       <div class="uk-margin">
@@ -33,8 +39,13 @@
             type="date"
             name="date"
             required
+            #date="ngModel"
+            [class.is-invalid]="date.invalid && date.touched"
             [(ngModel)]="movie.publishedDate"
           />
+          <small class="uk-alert-warning" *ngIf="date.invalid && date.touched"
+            >Fecha obligatoria</small
+          >
         </div>
       </div>
       <div class="uk-margin">
@@ -45,12 +56,19 @@
             id=""
             class="uk-select"
             [(ngModel)]="movie.active"
+            #active="ngModel"
+            [class.is-invalid]="active.invalid && active.touched"
             required
           >
             <option disabled selected>Seleccione el estado</option>
             <option value="true">Activo</option>
             <option value="false">Inactivo</option>
           </select>
+          <small
+            class="uk-alert-warning"
+            *ngIf="active.invalid && active.touched"
+            >Estado obligatoria</small
+          >
         </div>
       </div>
       <div class="uk-margin uk-text-center">

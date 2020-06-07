@@ -40,10 +40,6 @@ export class MoviesService {
     );
   }
 
-  // getMovie(id: string) {
-  //   return this._http.get(`${this.endpoint}/movies/${id}.json`);
-  // }
-
   deleteMovie(id: string) {
     return this._http.delete(`${this.endpoint}/movies/${id}.json`);
   }
