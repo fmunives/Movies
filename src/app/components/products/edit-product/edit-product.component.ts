@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class EditProductComponent implements OnInit {
   @Input() movie: MovieModel;
-  loaded: boolean = false;
 
   constructor(private _movies: MoviesService) {}
 

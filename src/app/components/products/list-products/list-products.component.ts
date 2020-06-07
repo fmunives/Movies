@@ -13,7 +13,6 @@ export class ListProductsComponent implements OnInit {
   movies: MovieModel[];
   movieSelected: MovieModel;
   moviesLoaded: boolean = false;
-  movieLoaded: boolean = false;
 
   constructor(private _movies: MoviesService) {}
 
@@ -21,13 +20,11 @@ export class ListProductsComponent implements OnInit {
     this._movies.getAllMovies().subscribe((resp) => {
       this.movies = resp;
       this.moviesLoaded = true;
-      console.log(this.movies);
     });
   }
 
   getMovie(movie: MovieModel) {
     this.movieSelected = movie;
-    this.movieLoaded = true;
   }
 
   updateForm(form: NgForm) {

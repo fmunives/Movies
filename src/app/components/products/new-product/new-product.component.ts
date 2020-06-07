@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class NewProductComponent implements OnInit {
   movie: MovieModel = new MovieModel();
-  newMovie: boolean = true;
+
   constructor(private _movies: MoviesService) {}
 
   ngOnInit(): void {}
@@ -25,10 +25,7 @@ export class NewProductComponent implements OnInit {
       return;
     }
 
-    console.log(form);
-    // document.getElementById('auto-click').click();
     this._movies.createMovie(this.movie).subscribe((resp: MovieModel) => {
-      this.newMovie = false;
       Swal.fire({
         title: 'guardado',
         text: `Película ${resp.name} ha sido creado`,

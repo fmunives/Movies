@@ -10,27 +10,17 @@
   </thead>
   <tbody>
     <tr>
-      <td
-        colspan="5"
-        *ngIf="!moviesLoaded"
-        class="uk-alert-info uk-width-1-1 uk-text-center"
-        uk-alert
-      >
-        <p>
+      <td colspan="5" *ngIf="!moviesLoaded">
+        <div class="uk-alert-info uk-width-1-1 uk-text-center" uk-alert>
           Cargando películas.
-        </p>
+        </div>
       </td>
     </tr>
     <tr>
-      <td
-        colspan="5"
-        *ngIf="movies.length == 0 && moviesLoaded"
-        class="uk-alert-danger uk-width-1-1 uk-text-center"
-        uk-alert
-      >
-        <p>
+      <td colspan="5" *ngIf="movies.length == 0 && moviesLoaded">
+        <div class="uk-alert-danger uk-width-1-1 uk-text-center" uk-alert>
           No hay películas creadas aún.
-        </p>
+        </div>
       </td>
     </tr>
     <tr *ngFor="let movie of movies; let i = index">
