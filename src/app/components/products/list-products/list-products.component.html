@@ -36,7 +36,7 @@
     <tr *ngFor="let movie of movies; let i = index">
       <td>{{ i + 1 }}</td>
       <td>{{ movie.name }}</td>
-      <td>{{ movie.publishedDate }}</td>
+      <td>{{ movie.publishedDate | date: "dd/MM/yyyy" }}</td>
       <td>
         <span *ngIf="movie.active == 'true'" class="uk-badge active"
           >Activo</span
