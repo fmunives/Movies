@@ -27,17 +27,36 @@ export class MoviesService {
       .pipe(map(this.convertArray));
   }
 
+  updateMovie(movie: MovieModel) {
+    const movieTemp = {
+      ...movie,
+    };
+
+    delete movieTemp.id;
+
+    return this._http.put(
+      `${this.endpoint}/movies/${movie.id}.json`,
+      movieTemp
+    );
+  }
+
+  // getMovie(id: string) {
+  //   return this._http.get(`${this.endpoint}/movies/${id}.json`);
+  // }
+
   deleteMovie(id: string) {
     return this._http.delete(`${this.endpoint}/movies/${id}.json`);
   }
 
   private convertArray(moviesObject: Object) {
     let arrMovies = [];
-    Object.keys(moviesObject).map((key) => {
-      let movie: MovieModel = moviesObject[key];
-      movie.id = key;
-      arrMovies.push(movie);
-    });
+    if (moviesObject != null) {
+      Object.keys(moviesObject).map((key) => {
+        let movie: MovieModel = moviesObject[key];
+        movie.id = key;
+        arrMovies.push(movie);
+      });
+    }
     return arrMovies;
   }
 }

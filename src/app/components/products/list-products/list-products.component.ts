@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieModel } from 'src/app/models/movies.model';
 import { MoviesService } from 'src/app/services/movies.service';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-list-products',
@@ -10,11 +11,37 @@ import Swal from 'sweetalert2';
 })
 export class ListProductsComponent implements OnInit {
   movies: MovieModel[];
+  movieSelected: MovieModel;
+  moviesLoaded: boolean = false;
+  movieLoaded: boolean = false;
 
   constructor(private _movies: MoviesService) {}
 
   ngOnInit(): void {
-    this._movies.getAllMovies().subscribe((resp) => (this.movies = resp));
+    this._movies.getAllMovies().subscribe((resp) => {
+      this.movies = resp;
+      this.moviesLoaded = true;
+      console.log(this.movies);
+    });
+  }
+
+  getMovie(movie: MovieModel) {
+    this.movieSelected = movie;
+    this.movieLoaded = true;
+  }
+
+  updateForm(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    this._movies.updateMovie(this.movieSelected).subscribe((resp) => {
+      Swal.fire({
+        title: `Película ${this.movieSelected.name} actualizada.`,
+        text: 'Refresce la página para ver los cambios.',
+        icon: 'success',
+      });
+    });
   }
 
   deleteMovie(movie: MovieModel, i: number) {

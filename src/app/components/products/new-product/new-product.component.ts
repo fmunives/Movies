@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class NewProductComponent implements OnInit {
   movie: MovieModel = new MovieModel();
+  newMovie: boolean = true;
   constructor(private _movies: MoviesService) {}
 
   ngOnInit(): void {}
@@ -20,10 +21,12 @@ export class NewProductComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+    // document.getElementById('auto-click').click();
     this._movies.createMovie(this.movie).subscribe((resp: MovieModel) => {
+      this.newMovie = false;
       Swal.fire({
-        title: 'Procesando...',
-        text: `Movie ${resp.name}  creado con éxito`,
+        title: `Película ${resp.name} creada`,
+        text: 'Refresce la página para ver los cambios.',
         icon: 'success',
       });
     });
